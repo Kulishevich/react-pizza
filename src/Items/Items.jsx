@@ -2,17 +2,21 @@ import React, { useContext, useEffect, useState } from 'react'
 import styles from './Items.module.scss'
 import Item from './Item/Item'
 import MyContext from '../MyContext'
+import MyLoader from '../MyLoader/MyLoader'
 
 export default function Items({activePage}) {
-    const [pizza, setPizza] = useState([])
+    const [pizza, setPizza] = useState([]) //массив объектов пицц
     const {activeSort, activeFilter, searchPizza} = useContext(MyContext)
-    const sortName = ['rating&order=desc', 'rating&order=asc', 'price&order=desc', 'price&order=asc', 'title&order=desc', 'title&order=asc']
+    const sortName = ['rating&order=desc', 'rating&order=asc', 'price&order=desc', 'price&order=asc', 'title&order=desc', 'title&order=asc'] //сортировка
+    const [isLoaded, setIsLoaded] = useState()
 
-    useEffect(() => {
+    useEffect(() => { //загрузка данных с MockAPI
+        setIsLoaded(false)
         const fetchData = async () => {
             const data = await fetch(`https://65e2384ca8583365b318095f.mockapi.io/pizza?page=${activePage + 1}&limit=4&sortBy=${sortName[activeSort]}${activeFilter === 0 ? '' : `?filter&category=${activeFilter}`}`);
             const res = await data.json();
             setPizza(res);
+            setIsLoaded(true)
         }
     
         fetchData();
@@ -24,11 +28,11 @@ export default function Items({activePage}) {
             <h1>Все пиццы</h1>
         </div>
         <div className={styles.items}>
-            {pizza
-            .filter(elem => (elem.title.toLowerCase().includes(searchPizza.toLowerCase())))
+            {isLoaded ? (pizza
+            .filter(item => (item.title.toLowerCase().includes(searchPizza.toLowerCase())))
             .map(elem => (
                 <Item key={elem.id} elem={elem}/>
-            ))}
+            ))) : (new Array(4)).fill().map((_, index) => <MyLoader key={index} />)}
         </div>
     </div>
   )
