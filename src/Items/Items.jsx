@@ -3,20 +3,20 @@ import styles from './Items.module.scss'
 import Item from './Item/Item'
 import MyContext from '../MyContext'
 
-export default function Items() {
+export default function Items({activePage}) {
     const [pizza, setPizza] = useState([])
     const {activeSort, activeFilter, searchPizza} = useContext(MyContext)
     const sortName = ['rating&order=desc', 'rating&order=asc', 'price&order=desc', 'price&order=asc', 'title&order=desc', 'title&order=asc']
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await fetch(`https://65e2384ca8583365b318095f.mockapi.io/works?sortBy=${sortName[activeSort]}${activeFilter === 0 ? '' : `?filter&category=${activeFilter}`}`);
+            const data = await fetch(`https://65e2384ca8583365b318095f.mockapi.io/pizza?page=${activePage + 1}&limit=4&sortBy=${sortName[activeSort]}${activeFilter === 0 ? '' : `?filter&category=${activeFilter}`}`);
             const res = await data.json();
             setPizza(res);
         }
     
         fetchData();
-    }, [activeSort, activeFilter]);
+    }, [activeSort, activeFilter, activePage]);
 
   return (
     <div className={styles.main}>

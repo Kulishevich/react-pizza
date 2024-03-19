@@ -1,0 +1,23 @@
+.main {
+    display: flex;
+    li {
+        list-style-type: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 16px;
+        min-width: 40px;
+        text-align: center;
+        margin-right: 10px;
+        background: #F9F9F9;
+        &:hover {
+            background-color: #FE5F1E;
+            cursor: pointer;
+            color: white;
+            opacity: 0.5;
+        }
+    }
+    .active {
+        background-color: #FE5F1E;
+        color: white;
+    }
+}
