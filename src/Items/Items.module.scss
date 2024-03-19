@@ -1,0 +1,16 @@
+.main {
+    margin-top: 32px;
+}
+.title {
+    width: 100%;
+    margin-bottom: 32px;
+    h1 {
+        font-size: 32px;
+        font-weight: 700;
+    }
+}
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

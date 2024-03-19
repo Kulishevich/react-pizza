@@ -1,0 +1,19 @@
+import React, { useContext, useState } from 'react'
+import styles from './SearchPizza.module.scss'
+import MyContext from '../MyContext'
+
+export default function SearchPizza() {
+    const [value, setValue] = useState('')
+    const {setSearchPizza} = useContext(MyContext)
+
+    return (
+        <div className={styles.main}>
+            <img className={styles.img1} src='/images/2.png' alt="Лупа" onClick={() => setSearchPizza(value)}/>
+            {value && (<img className={styles.img2} src='/images/3.png' alt="Лупа" onClick={() => {
+                setValue('')
+                setSearchPizza('')
+            }}/>)}
+            <input value={value} onChange={(e) => setValue(e.target.value)} placeholder='Поиск пиццы'/>
+        </div>
+    )
+}

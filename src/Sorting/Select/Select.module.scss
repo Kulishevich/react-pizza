@@ -1,0 +1,43 @@
+.main {
+    font-size: 14px;
+    position: relative;
+}
+.container {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17px;
+}
+.menu {
+    color: #FE5F1E;
+    border-bottom: 1px dotted #FE5F1E;
+    cursor: pointer;
+    min-width: 93px;
+    &:hover {
+        opacity: 0.5;
+    }
+}
+.elems {
+    width: 132px;
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    list-style-type: none;
+    padding-top: 13px; 
+    z-index: 1;
+}
+.elem {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17px;
+    padding: 10px 22px 11px 14px;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.5;
+    }
+}
+.active {
+    background: #FE5F1E0D;
+    color: #FE5F1E;
+}
