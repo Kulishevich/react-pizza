@@ -1,0 +1,26 @@
+.main {
+    background: #FE5F1E;
+    display: flex;
+    border-radius: 50px;
+    padding: 15px 23px;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+}
+.price {
+    font-size: 16px;
+}
+.line {
+    width: 1px;
+    height: 25px;
+    background: #FFFFFF40;
+    margin: 0 13px;
+}
+.count {
+    display: flex;
+    p {
+        margin-left: 7px;
+    }
+}

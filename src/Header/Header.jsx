@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import styles from './Header.module.scss'
-import Basket from '../Basket/Basket'
+import AddBasket from '../AddBasket/AddBasket'
 import SearchPizza from '../SearchPizza/SearchPizza'
 
 export default function Header() {
@@ -17,7 +17,7 @@ export default function Header() {
             </div>
             <SearchPizza />
         </div>
-            <Basket/>
+            <AddBasket/>
     </div>
   )
 }
