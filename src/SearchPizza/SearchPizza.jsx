@@ -2,9 +2,8 @@ import React, { useContext, useState } from 'react'
 import styles from './SearchPizza.module.scss'
 import MyContext from '../MyContext'
 
-export default function SearchPizza() {
+export default function SearchPizza({setSearchPizza}) {
     const [value, setValue] = useState('')
-    const {setSearchPizza} = useContext(MyContext)
 
     return (
         <div className={styles.main}>

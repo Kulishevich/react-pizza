@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import styles from './Header.module.scss'
 import AddBasket from '../AddBasket/AddBasket'
-import SearchPizza from '../SearchPizza/SearchPizza'
+// import SearchPizza from '../SearchPizza/SearchPizza'
 
 export default function Header() {
 
@@ -15,7 +15,7 @@ export default function Header() {
                 <h1>REACT PIZZA</h1>
                 <p>самая вкусная пицца во вселенной</p>
             </div>
-            <SearchPizza />
+            {/* <SearchPizza setSearchPizza={setSearchPizza}/> */}
         </div>
             <AddBasket/>
     </div>

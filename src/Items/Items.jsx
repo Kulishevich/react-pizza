@@ -4,9 +4,9 @@ import Item from './Item/Item'
 import MyContext from '../MyContext'
 import MyLoader from '../MyLoader/MyLoader'
 
-export default function Items({activePage}) {
+export default function Items({searchPizza, activePage}) {
     const [pizza, setPizza] = useState([]) //массив объектов пицц
-    const {activeSort, activeFilter, searchPizza} = useContext(MyContext)
+    const {activeSort, activeFilter} = useContext(MyContext)
     const sortName = ['rating&order=desc', 'rating&order=asc', 'price&order=desc', 'price&order=asc', 'title&order=desc', 'title&order=asc'] //сортировка
     const [isLoaded, setIsLoaded] = useState()
 

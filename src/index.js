@@ -8,16 +8,28 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Basket from './Basket/Basket';
+import { Layout } from './Layout/Layout';
+import { PageNotFound } from './PageNotFound/PageNotFound';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>,
-  },
-  {
-    path: "/basket",
-    element: <Basket/>,
-  },
+    element: <Layout/>,
+    children: [
+      {
+        index: true,
+        element: <Home/>
+      },
+      {
+        path: "/basket",
+        element: <Basket/>
+      },
+      {
+        path: "/*",
+        element: <PageNotFound/>
+      }
+    ]
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
