@@ -2,14 +2,26 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-top: 40px;
+    @media (max-width: 1320px) {
+        flex-direction: column;
+    }
 }
 .nav {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    @media (max-width: 1000px) {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+    @media (max-width: 580px) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
 }
 .btn {
     padding: 14px 25px 17px;
+    width: fit-content;
     background: #F9F9F9;
     border-radius: 30px;
     margin-right: 9px;

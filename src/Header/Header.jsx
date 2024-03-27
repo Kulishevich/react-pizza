@@ -2,12 +2,13 @@ import React, { useContext } from 'react'
 import styles from './Header.module.scss'
 import AddBasket from '../AddBasket/AddBasket'
 // import SearchPizza from '../SearchPizza/SearchPizza'
+import { Link } from 'react-router-dom'
 
 export default function Header() {
 
   return (
     <div className={styles.main}>
-        <div className={styles.elem1}>
+        <Link to='/' className={styles.elem1}>
             <div className={styles.image}>
                 <img src="/images/1.png" alt="" />
             </div>
@@ -16,7 +17,7 @@ export default function Header() {
                 <p>самая вкусная пицца во вселенной</p>
             </div>
             {/* <SearchPizza setSearchPizza={setSearchPizza}/> */}
-        </div>
+        </Link>
             <AddBasket/>
     </div>
   )

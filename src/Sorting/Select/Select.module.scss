@@ -1,6 +1,9 @@
 .main {
     font-size: 14px;
     position: relative;
+    height: 50px;
+    display: flex;
+    align-items: center;
 }
 .container {
     font-size: 14px;
@@ -17,21 +20,24 @@
     }
 }
 .elems {
-    width: 132px;
+    width: 200px;
     background-color: white;
     border-radius: 10px;
     position: absolute;
     right: 0;
-    top: 20px;
+    top: 40px;
     list-style-type: none;
     padding-top: 13px; 
     z-index: 1;
+    @media (max-width: 1320px) {
+        left: 110px;
+    }
 }
 .elem {
     font-size: 14px;
     font-weight: 700;
     line-height: 17px;
-    padding: 10px 22px 11px 14px;
+    padding: 10px 15px;
     cursor: pointer;
     &:hover {
         opacity: 0.5;

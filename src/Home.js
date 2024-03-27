@@ -10,10 +10,8 @@ function Home() {
   const [activeSort, setActiveSort] = useState(0) //сортировка
   const [activeFilter, setActiveFilter] = useState(0) //фильтры
   const [searchPizza, setSearchPizza] = useState('') //поиск пиццы в input, работает по нажатию на "Лупу", отключён в связи с ненадобностью, вохможно включу
-  //тут использование контекста было необязательным, делал для практики, а вот корзину придётся делать с контекстом обязательно
+  //тут использование контекста было необязательным, делал для практики, а вот корзину придётся делать с контекстом обязательно. Отмена, корзина будет с редаксом
   const [activePage, setActivePage] = useState(0) //активная страница(Пагинация)
-
-  const [inBasket, setInBasket] = useState([])
 
   return (
         <MyContext.Provider value={{
@@ -21,8 +19,6 @@ function Home() {
           setActiveSort: setActiveSort,
           activeFilter: activeFilter,
           setActiveFilter: setActiveFilter,
-          inBasket: inBasket,
-          setInBasket: setInBasket
         }}> 
           <Sorting/> 
           <Items searchPizza={searchPizza} activePage={activePage}/>
