@@ -29,7 +29,7 @@ export default function Basket() {
                     <img src="/images/3.png" alt="" />
                 </div>
             </div>
-            <div className={styles.item}>
+            <div className={styles.item}> 
                 <div className={styles.logo}>
                     <img src="/images/4.png" alt=""/>
                     <div className={styles.title}>

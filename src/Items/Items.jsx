@@ -27,12 +27,14 @@ export default function Items({searchPizza, activePage}) {
         <div className={styles.title}>
             <h1>Все пиццы</h1>
         </div>
-        <div className={styles.items}>
-            {isLoaded ? (pizza
-            .filter(item => (item.title.toLowerCase().includes(searchPizza.toLowerCase())))
-            .map(elem => (
-                <Item key={elem.id} elem={elem}/>
-            ))) : (new Array(4)).fill().map((_, index) => <MyLoader key={index} />)}
+        <div className={styles.container}>
+            <div className={styles.items}>
+                {isLoaded ? (pizza
+                .filter(item => (item.title.toLowerCase().includes(searchPizza.toLowerCase())))
+                .map(elem => (
+                    <Item key={elem.id} elem={elem}/>
+                ))) : (new Array(4)).fill().map((_, index) => <MyLoader key={index} />)}
+            </div>
         </div>
     </div>
   )
