@@ -1,6 +1,7 @@
 .main {
     display: flex;
     margin-top: 50px;
+    justify-content: center;
     li {
         list-style-type: none;
         padding: 10px 20px;
@@ -20,5 +21,10 @@
     .active {
         background-color: #FE5F1E;
         color: white;
+    }
+    @media (max-width: 470px) {
+        .navigation {
+            display: none;
+        }
     }
 }

@@ -1,26 +1,28 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Items.module.scss'
 import Item from './Item/Item'
-import MyContext from '../MyContext'
 import MyLoader from '../MyLoader/MyLoader'
+import { useSelector } from 'react-redux'
 
 export default function Items({searchPizza, activePage}) {
     const [pizza, setPizza] = useState([]) //массив объектов пицц
-    const {activeSort, activeFilter} = useContext(MyContext)
     const sortName = ['rating&order=desc', 'rating&order=asc', 'price&order=desc', 'price&order=asc', 'title&order=desc', 'title&order=asc'] //сортировка
-    const [isLoaded, setIsLoaded] = useState()
+    const [isLoaded, setIsLoaded] = useState() //состояние загрузи
+
+    const filterInd = useSelector((state) => state.filter.filterIndex) //достаём из redux id фильтрации
+    const sortInd = useSelector((state) => state.filter.sortIndex) //достаём из redux id сортировки
 
     useEffect(() => { //загрузка данных с MockAPI
         setIsLoaded(false)
         const fetchData = async () => {
-            const data = await fetch(`https://65e2384ca8583365b318095f.mockapi.io/pizza?page=${activePage + 1}&limit=4&sortBy=${sortName[activeSort]}${activeFilter === 0 ? '' : `?filter&category=${activeFilter}`}`);
+            const data = await fetch(`https://65e2384ca8583365b318095f.mockapi.io/pizza?page=${activePage + 1}&limit=4&sortBy=${sortName[sortInd]}${filterInd === 0 ? '' : `?filter&category=${filterInd}`}`);
             const res = await data.json();
-            setPizza(res);
-            setIsLoaded(true)
+            setPizza(res); //после обновления фильтрации, сортировки или страницы обновляет
+            setIsLoaded(true) //выше состояние загрузки переводится в состояние false, и соответственно после успешной загрузки она становится true
         }
     
         fetchData();
-    }, [activeSort, activeFilter, activePage]);
+    }, [sortInd, filterInd, activePage]);
 
   return (
     <div className={styles.main}>

@@ -6,7 +6,7 @@ export default function Pagination({activePage, setActivePage}) {
 
     return (
     <div className={styles.main}>
-        <li onClick={() => setActivePage(prev => (activePage > 0 ? --prev : prev))}>Назад</li>
+        <li onClick={() => setActivePage(prev => (activePage > 0 ? --prev : prev))} className={styles.navigation}>Назад</li>
         {pages.map((elem, index) => (
             <li 
                 key={index} 
@@ -15,7 +15,7 @@ export default function Pagination({activePage, setActivePage}) {
                 {elem}
             </li>
         ))}
-        <li onClick={() => setActivePage(prev => (activePage < 2 ? ++prev : prev))}>Вперёд</li>
+        <li onClick={() => setActivePage(prev => (activePage < 2 ? ++prev : prev))} className={styles.navigation}>Вперёд</li>
     </div>
   )
 }

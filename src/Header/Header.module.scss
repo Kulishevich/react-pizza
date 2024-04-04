@@ -6,9 +6,6 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #F6F6F6;
-    @media (max-width: 470px) {
-        flex-direction: column;
-    }
 }   
 .elem1 {
     display: flex;
@@ -26,5 +23,10 @@
     p {
         color:#7B7B7B;
         font-size: 16px;
+    }
+    @media (max-width: 470px) {
+        p {
+            display: none;
+        }
     }
 }

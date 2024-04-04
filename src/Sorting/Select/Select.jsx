@@ -1,24 +1,22 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styles from './Select.module.scss'
-import MyContext from '../../MyContext'
+import { useSelector, useDispatch } from 'react-redux'
+import { setSortIndex } from '../../redux/slices/filterSlice'
 
 const sort = ['популярности (DESC)', 'популярности (ASC)', 'цене (DESC)', 'цене (ASC)', 'алфавиту (DESC)', 'алфавиту (ASC)']
 
 export default function Select() {
-    const [indexSort, setIndexSort] = useState(0)
     const [showMenu, setShowMenu] = useState(false)
-    const {setActiveSort} = useContext(MyContext)
 
-    useEffect(() => {
-      setActiveSort(indexSort)
-    }, [indexSort])
+    const sortInd = useSelector((state) => state.filter.sortIndex)
+    const dispatch = useDispatch()
 
   return (
     <div className={styles.main}>
-        <div className={styles.container}>Сортировка по: <span className={styles.menu} onClick={() => setShowMenu(!showMenu)}>{sort[indexSort]}</span></div>
+        <div className={styles.container}>Сортировка по: <span className={styles.menu} onClick={() => setShowMenu(!showMenu)}>{sort[sortInd]}</span></div>
         {showMenu && (<div className={styles.elems}>
             {sort.map((elem, index) => (
-                <li key={index} className={`${styles.elem} ${index == indexSort && styles.active}`} onClick={() => setIndexSort(index)}>{elem}</li>
+                <li key={index} className={`${styles.elem} ${index == sortInd && styles.active}`} onClick={() => dispatch(setSortIndex(index))}>{elem}</li>
             ))}
         </div>  )}
     </div>

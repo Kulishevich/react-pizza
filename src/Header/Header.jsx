@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styles from './Header.module.scss'
 import AddBasket from '../AddBasket/AddBasket'
-// import SearchPizza from '../SearchPizza/SearchPizza'
+import SearchPizza from '../SearchPizza/SearchPizza'
 import { Link } from 'react-router-dom'
 
-export default function Header() {
+export default function Header({setSearchPizza}) {
 
   return (
     <div className={styles.main}>
@@ -16,7 +16,7 @@ export default function Header() {
                 <h1>REACT PIZZA</h1>
                 <p>самая вкусная пицца во вселенной</p>
             </div>
-            {/* <SearchPizza setSearchPizza={setSearchPizza}/> */}
+            <SearchPizza setSearchPizza={setSearchPizza}/>
         </Link>
             <AddBasket/>
     </div>
