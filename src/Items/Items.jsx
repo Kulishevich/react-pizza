@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react'
 import styles from './Items.module.scss'
 import Item from './Item/Item'
 import MyLoader from '../MyLoader/MyLoader'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setActivePage } from '../redux/slices/pageSlice'
+import { setSortIndex, setFilterIndex } from '../redux/slices/filterSlice'
 import axios from 'axios'
+import qs from 'qs'
+import { useNavigate } from 'react-router-dom'
+
 
 export default function Items() {
     const [pizza, setPizza] = useState([]) //массив объектов пицц
@@ -14,6 +19,19 @@ export default function Items() {
     const sortInd = useSelector((state) => state.filter.sortIndex) //достаём из redux id сортировки
     const searchValue = useSelector((state) => state.search.value)
     const activePage = useSelector(state => state.activePage.page )
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if(window.location.search){
+            const params = qs.parse(window.location.search.substring(1))
+            console.log(params)
+            dispatch(setSortIndex(params.sortInd))
+            dispatch(setFilterIndex(params.filterInd))
+            dispatch(setActivePage(params.activePage))
+        }
+    }, [])
 
     useEffect(() => { //загрузка данных с MockAPI
         setIsLoaded(false) //иммитируем загрузку данных
@@ -26,6 +44,16 @@ export default function Items() {
         })
         .catch(err => console.log('Error:', err))
     }, [sortInd, filterInd, activePage]);
+
+    useEffect(() => {
+        const queryString = qs.stringify({
+            sortInd,
+            filterInd,
+            activePage,
+        })
+
+        navigate(`?${queryString}`)
+    }, [sortInd, filterInd, activePage])
 
   return (
     <div className={styles.main}>

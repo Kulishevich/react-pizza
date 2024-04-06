@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import styles from './SearchPizza.module.scss'
 import { useDispatch } from 'react-redux'
 import { setSearch } from '../redux/slices/searchSlice'
@@ -7,6 +7,7 @@ import debounce from 'lodash.debounce'
 
 export default function SearchPizza() {
     const [inputValue, setInputValue] = useState('')
+    const dispatch = useDispatch()
     const inputRef = React.useRef()
 
     const clickClear = () => {
@@ -15,7 +16,16 @@ export default function SearchPizza() {
         inputRef.current.focus()
     }
 
-    const dispatch = useDispatch()
+    const debounceChangeValue = useCallback(debounce((event) => {
+        dispatch(setSearch(event.target.value))
+        console.log('change debounce!!!')
+    }, 500), [])
+
+    const changeValue = (event) => {
+        setInputValue(event.target.value)
+        console.log('change!!!')
+        debounceChangeValue(event)
+    }
 
     return (
         <div className={styles.main}>
@@ -29,7 +39,7 @@ export default function SearchPizza() {
             <input 
                 ref={inputRef}
                 value={inputValue} 
-                onChange={(e) => setInputValue(e.target.value)} 
+                onChange={(e) => changeValue(e)} 
                 placeholder='Поиск пиццы'
             />
         </div>

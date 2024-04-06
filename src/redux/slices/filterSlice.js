@@ -8,10 +8,10 @@ export const filterSlice = createSlice({
     },
     reducers: {
         setFilterIndex: (state, action) => {
-            state.filterIndex = action.payload
+            state.filterIndex = Number(action.payload)
         },
         setSortIndex: (state, action) => {
-            state.sortIndex = action.payload
+            state.sortIndex = Number(action.payload)
         },
     }
 })

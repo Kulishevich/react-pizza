@@ -13,7 +13,7 @@ export const pageSlice = createSlice({
             state.page--
         },
         setActivePage: (state, action) => {
-            state.page = action.payload
+            state.page = Number(action.payload)
         }
     }
 })
