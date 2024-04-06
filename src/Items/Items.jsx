@@ -13,7 +13,7 @@ export default function Items() {
     const filterInd = useSelector((state) => state.filter.filterIndex) //достаём из redux id фильтрации
     const sortInd = useSelector((state) => state.filter.sortIndex) //достаём из redux id сортировки
     const searchValue = useSelector((state) => state.search.value)
-    const activePage = useSelector(state => state.page.activePage )
+    const activePage = useSelector(state => state.activePage.page )
 
     useEffect(() => { //загрузка данных с MockAPI
         setIsLoaded(false) //иммитируем загрузку данных

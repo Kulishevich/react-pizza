@@ -7,14 +7,20 @@ import { setActivePage, activePageIncrement, activePageDecrement } from '../redu
 export default function Pagination() {
   const pages = [1, 2, 3]
 
-  const activePage = useSelector(state => state.page.activePage )
-  console.log(activePage)
+  const activePage = useSelector(state => state.activePage.page )
   const dispatch = useDispatch()
 
+  const increment = () => {
+    if(activePage < 2) dispatch(activePageIncrement())
+  }
+
+  const decrement = () => {
+    if(activePage > 0) dispatch(activePageDecrement())
+  }
 
     return (
     <div className={styles.main}>
-        <li onClick={() => dispatch(activePageDecrement())} className={styles.navigation}>Назад</li>
+        <li onClick={decrement} className={styles.navigation}>Назад</li>
         {pages.map((elem, index) => (
             <li 
                 key={index} 
@@ -23,7 +29,7 @@ export default function Pagination() {
                 {elem}
             </li>
         ))}
-        <li onClick={() => dispatch(activePageIncrement())} className={styles.navigation}>Вперёд</li>
+        <li onClick={increment} className={styles.navigation}>Вперёд</li>
     </div>
   )
 }

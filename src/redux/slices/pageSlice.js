@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const pageSlice = createSlice({
     name: 'activePage',
     initialState: {
-        page: 1,
+        page: 0,
     },
     reducers: {
         activePageIncrement: (state) => {
