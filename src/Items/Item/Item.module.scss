@@ -69,9 +69,18 @@
     justify-content: space-around;
     align-items: center;
     .count {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background: #FE5F1E;
         color: white;
         border-radius: 50%;
-        padding: 3px 7px;
+        width: 27px;
+        height: 27px;
+    }
+    &:hover {
+        background-color: #FE5F1E;
+        color: white;
+        font-weight: bold;
     }
 }

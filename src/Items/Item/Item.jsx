@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Item.module.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import { setBasketPizzas } from '../../redux/slices/basketSlice'
 
 export default function Item({elem}) {
     const typeNames = ['тонкое', 'традиционное']
     const sizeNames = [26, 30, 40]
     const [activeType, setActiveType] = useState()
     const [activeSize, setActiveSize] = useState()
+
+    const pizzaElem = useSelector((state) => state.basket.basketPizzas)
+    const dispatch = useDispatch()
 
     const changeActiveType = (index) => {
             if(elem.types.includes(index)){
@@ -55,10 +60,18 @@ export default function Item({elem}) {
             <div className={styles.price}>
                 <h2>от {elem.price} P</h2>
             </div>
-            <div className={styles.button}>
+            <div 
+                className={styles.button} 
+                onClick={() => dispatch(setBasketPizzas(
+                    {
+                        ...elem,
+                        activeType: typeNames[activeType],
+                        activeSize: sizeNames[activeSize],
+                    }
+                    ))}>
                 <div>+</div>
                 <div>Добавить</div>
-                <div className={styles.count}>2</div>
+                <div className={styles.count}>{pizzaElem.filter(obj => obj.id === elem.id).length ? pizzaElem.find(obj => obj.id === elem.id).count : 0}</div>
             </div>
         </div>
     </div>

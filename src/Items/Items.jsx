@@ -26,7 +26,7 @@ export default function Items() {
     useEffect(() => {
         if(window.location.search){
             const params = qs.parse(window.location.search.substring(1))
-            console.log(params)
+            
             dispatch(setSortIndex(params.sortInd))
             dispatch(setFilterIndex(params.filterInd))
             dispatch(setActivePage(params.activePage))
