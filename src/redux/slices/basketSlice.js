@@ -18,9 +18,25 @@ export const basketSlice = createSlice({
                     count: 1,
                 })
             }
+        },
+        setCountIncrement: (state, action) => {
+            state.basketPizzas[action.payload].count++
+        },
+        setCountDecrement: (state, action) => {
+            if(state.basketPizzas[action.payload].count > 1){
+                state.basketPizzas[action.payload].count--
+            } else {
+                state.basketPizzas = [...state.basketPizzas.slice(0, action.payload), ...state.basketPizzas.slice(action.payload + 1)]
+            }
+        },
+        deletePizzaElem: (state, action) => {
+            state.basketPizzas = [...state.basketPizzas.slice(0, action.payload), ...state.basketPizzas.slice(action.payload + 1)]
+        },
+        clearPizzaBasket: (state) => {
+            state.basketPizzas = []
         }
     }
 })
 
-export const { setBasketPizzas } = basketSlice.actions //экспорт методов(функций)
+export const { setBasketPizzas, setCountIncrement, setCountDecrement, deletePizzaElem, clearPizzaBasket} = basketSlice.actions //экспорт методов(функций)
 export default basketSlice.reducer

@@ -15,8 +15,7 @@
         line-height: 38.98px;
     }
     button {
-        width: 169px;
-        height: 23px;
+        padding: 10px 20px;
         background: white;
         border: none;
         display: flex;
@@ -25,6 +24,12 @@
         font-weight: 400;
         line-height: 19.49px;
         color: #B6B6B6;
+        &:hover {
+            color: black;
+            background-color: #b6b6b629;
+            border-radius: 10px;
+            cursor: pointer;
+        }
     }
 }
 .items {
@@ -66,11 +71,15 @@
         width: 32px;
         height: 32px;
         border-radius: 50%;
-        text-align: center;
         font-size: 25px;
         color: #EB5A1E;
         background-color: white;
         border: 1px solid #EB5A1E;
+        &:hover {
+            background-color: #EB5A1E;
+            color: white;
+            cursor: pointer;
+        }
     }
 }
 .price {
@@ -88,6 +97,11 @@
     img {
         width: 10px;
         height: 10px;
+    }
+    &:hover {
+        color: black;
+        background-color: #b6b6b629;
+        cursor: pointer;
     }
 }
 .allPrice {

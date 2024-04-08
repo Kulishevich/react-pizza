@@ -18,7 +18,7 @@ export default function Header({setSearchPizza}) {
             </div>
             <SearchPizza setSearchPizza={setSearchPizza}/>
         </Link>
-            <AddBasket/>
+        <AddBasket/>
     </div>
   )
 }
