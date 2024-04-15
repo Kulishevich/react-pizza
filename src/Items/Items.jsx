@@ -5,43 +5,24 @@ import MyLoader from '../MyLoader/MyLoader'
 import { useSelector, useDispatch } from 'react-redux'
 import { setActivePage } from '../redux/slices/pageSlice'
 import { setSortIndex, setFilterIndex } from '../redux/slices/filterSlice'
-import axios from 'axios'
 import qs from 'qs'
 import { useNavigate } from 'react-router-dom'
-import { setItems, fetchPizzas } from '../redux/slices/pizzasSlice'
+import { fetchPizzas } from '../redux/slices/pizzasSlice'
 
 
 export default function Items() {
-    // const [pizza, setPizza] = useState([]) //массив объектов пицц
     const sortName = ['rating&order=desc', 'rating&order=asc', 'price&order=desc', 'price&order=asc', 'title&order=desc', 'title&order=asc'] //сортировка
-    const [isLoaded, setIsLoaded] = useState() //состояние загрузи
 
     const filterInd = useSelector((state) => state.filter.filterIndex) //достаём из redux id фильтрации
     const sortInd = useSelector((state) => state.filter.sortIndex) //достаём из redux id сортировки
     const searchValue = useSelector((state) => state.search.value) //поиск по пиццам
     const activePage = useSelector(state => state.activePage.page ) //активная страница
-    const pizza = useSelector(state => state.pizzas.items)
+    const { items, status } = useSelector(state => state.pizzas)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const fetchData = () => { // функция получения данных с сервера(mockAPI)
-        console.log(1)
-        try{ //метод написания на async
-            console.log(555)
-            dispatch(fetchPizzas({
-                activePage,
-                sortName,
-                sortInd,
-                filterInd,
-            }))
-        }
-        catch{
-            alert('hui')
-        }
-        finally{
-            setIsLoaded(true)
-        }
+    // const fetchData = () => { // функция получения данных с сервера(mockAPI)
         //вариант без async await
         // axios
         // .get(`https://65e2384ca8583365b318095f.mockapi.io/pizza?page=${activePage + 1}&limit=4&sortBy=${sortName[sortInd]}${filterInd === 0 ? '' : `?filter&category=${filterInd}`}`)
@@ -55,7 +36,7 @@ export default function Items() {
         // .finally(() => {
         //     setIsLoaded(true)
         // })
-    }
+    // }
 
     useEffect(() => {
         if(window.location.search){
@@ -68,8 +49,12 @@ export default function Items() {
     }, [])
 
     useEffect(() => { //загрузка данных с MockAPI
-        setIsLoaded(false) //иммитируем загрузку данных
-        fetchData()
+        dispatch(fetchPizzas({
+            activePage,
+            sortName,
+            sortInd,
+            filterInd,
+        }))
     }, [sortInd, filterInd, activePage]);
 
     useEffect(() => {
@@ -89,7 +74,8 @@ export default function Items() {
         </div>
         <div className={styles.container}>
             <div className={styles.items}>
-                {isLoaded ? (pizza
+                {status === 'error' && <div>Упс...Что-то пошло не так</div>}
+                {status !== 'loading' ? (items
                 .filter(item => (item.title.toLowerCase().includes(searchValue.toLowerCase())))
                 .map(elem => (
                     <Item key={elem.id} elem={elem}/>

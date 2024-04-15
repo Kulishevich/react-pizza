@@ -14,27 +14,32 @@ export default function Basket() {
     pizzaElem.length ? 
     <div className={styles.main}>
         <div className={styles.header}>
-            <h2> <img src="/images/6.png" alt="" /> Корзина</h2>
+            <div className={styles.headerContainer}>
+                <img src="/images/6.png" alt="" />
+                <h2> Корзина</h2>
+            </div>
             <button className={styles.clear} onClick={() => dispatch(clearPizzaBasket())}> <img src="/images/5.svg" alt=""/> Очистить корзину</button>
         </div>
         <div className={styles.items}>  
             {pizzaElem.map((elem, index) => (
             // элемент
             <div key={index} className={styles.item}>
-                <div className={styles.logo}>
+                <div className={styles.itemContainer}>
+                    <div className={styles.logo}>
                     <img src={elem.imageUrl} alt=""/>
                     <div className={styles.title}>
                         <h2>{elem.title}</h2>
                         <p>{elem.activeType} тесто {elem.activeSize} см</p>
                     </div>
-                </div>
-                <div className={styles.counter}>
-                    <button onClick={() => dispatch(setCountDecrement(index))}> - </button>
-                    <h2> {elem.count} </h2>
-                    <button onClick={() => dispatch(setCountIncrement(index))}> + </button>
+                    </div>
+                    <div className={styles.counter}>
+                        <button onClick={() => dispatch(setCountDecrement(index))}> - </button>
+                        <h2> {elem.count} </h2>
+                        <button onClick={() => dispatch(setCountIncrement(index))}> + </button>
+                    </div>
                 </div>
 
-                <div className={styles.price}>{elem.price * elem.count}</div>
+                <div className={styles.price}>{elem.price * elem.count}P</div>
                 <div className={styles.close} onClick={() => dispatch(deletePizzaElem(index))}>
                     <img src="/images/3.png" alt="" />
                 </div>

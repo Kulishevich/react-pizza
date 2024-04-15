@@ -16,7 +16,7 @@ export default function Header({setSearchPizza}) {
                 <h1>REACT PIZZA</h1>
                 <p>самая вкусная пицца во вселенной</p>
             </div>
-            <SearchPizza setSearchPizza={setSearchPizza}/>
+            {/* <SearchPizza setSearchPizza={setSearchPizza}/> */}
         </Link>
         <AddBasket/>
     </div>
