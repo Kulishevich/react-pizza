@@ -24,25 +24,26 @@ export default function Basket() {
             {pizzaElem.map((elem, index) => (
             // элемент
             <div key={index} className={styles.item}>
-                <div className={styles.itemContainer}>
                     <div className={styles.logo}>
-                    <img src={elem.imageUrl} alt=""/>
-                    <div className={styles.title}>
-                        <h2>{elem.title}</h2>
-                        <p>{elem.activeType} тесто {elem.activeSize} см</p>
+                        <img src={elem.imageUrl} alt=""/>
+                        <div className={styles.title}>
+                            <h2>{elem.title}</h2>
+                            <p>{elem.activeType} тесто {elem.activeSize} см</p>
+                        </div>
                     </div>
-                    </div>
-                    <div className={styles.counter}>
-                        <button onClick={() => dispatch(setCountDecrement(index))}> - </button>
-                        <h2> {elem.count} </h2>
-                        <button onClick={() => dispatch(setCountIncrement(index))}> + </button>
-                    </div>
-                </div>
+                    
+                    <div className={styles.itemContainer}>
+                        <div className={styles.counter}>
+                            <button onClick={() => dispatch(setCountDecrement(index))}> - </button>
+                            <h2> {elem.count} </h2>
+                            <button onClick={() => dispatch(setCountIncrement(index))}> + </button>
+                        </div>
 
-                <div className={styles.price}>{elem.price * elem.count}P</div>
-                <div className={styles.close} onClick={() => dispatch(deletePizzaElem(index))}>
-                    <img src="/images/3.png" alt="" />
-                </div>
+                        <div className={styles.price}>{elem.price * elem.count}P</div>
+                        <div className={styles.close} onClick={() => dispatch(deletePizzaElem(index))}>
+                            <img src="/images/3.png" alt="" />
+                        </div>
+                    </div>
             </div>
             ))}
         </div>
