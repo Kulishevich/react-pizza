@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
+// ВНИМАНИЕ!!! если запрос на сервер не работает => я удалил mockAPI, и тогда надо запускать сервер через json-server
+//но под json-server тут запрос не переделан. Воот...
 export const fetchPizzas = createAsyncThunk(
     'pizza/fetchPizzasStatus',
     async (params) => {
