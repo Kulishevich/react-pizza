@@ -2,9 +2,10 @@
 import Items from './Items/Items';
 import Sorting from './Sorting/Filter';
 import Pagination from './Pagination/Pagination';
+import { FC } from 'react';
 
 
-function Home() {
+export const Home: FC = () => {
   return (  
     <>
       <Sorting/>
@@ -13,5 +14,3 @@ function Home() {
     </>
   )
 }
-
-export default Home;
