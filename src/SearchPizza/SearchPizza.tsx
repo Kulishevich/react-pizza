@@ -1,14 +1,14 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef } from 'react'
 import styles from './SearchPizza.module.scss'
 import { useDispatch } from 'react-redux'
 import { setSearch } from '../redux/slices/searchSlice'
 import debounce from 'lodash.debounce'
 
 
-export default function SearchPizza() {
-    const [inputValue, setInputValue] = useState('')
+export const SearchPizza = () => {
+    const [inputValue, setInputValue] = useState<string>('')
     const dispatch = useDispatch()
-    const inputRef = React.useRef()
+    const inputRef = useRef<HTMLInputElement>(null)
 
     const clickClear = () => {
         setInputValue('')

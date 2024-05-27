@@ -5,7 +5,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Basket from './Basket/Basket';
+import {Basket} from './Basket/Basket';
 import { Layout } from './Layout/Layout';
 import { PageNotFound } from './PageNotFound/PageNotFound';
 import store from './redux/store'

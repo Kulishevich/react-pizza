@@ -1,14 +1,14 @@
-import React  from 'react'
+import React, { FC }  from 'react'
 import styles from './Filter.module.scss'
-import Select from './Select/Select'
+import {Select} from './Select/Select'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFilterIndex } from '../redux/slices/filterSlice'
 
-const categories = ['Все', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые']
+const categories: string[] = ['Все', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые']
 
-export default function Filter() {
+export const Filter: FC = () => {
 
-  const activeFilter = useSelector((state) => state.filter.filterIndex)
+  const activeFilter: number = useSelector((state) => state.filter.filterIndex)
   const dispatch = useDispatch()
 
   return (

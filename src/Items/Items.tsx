@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import styles from './Items.module.scss'
-import Item from './Item/Item'
-import MyLoader from '../MyLoader/MyLoader'
+import {Item} from './Item/Item'
+import {MyLoader} from '../MyLoader/MyLoader'
 import { useSelector, useDispatch } from 'react-redux'
 import { setActivePage } from '../redux/slices/pageSlice'
 import { setSortIndex, setFilterIndex } from '../redux/slices/filterSlice'
 import qs from 'qs'
 import { useNavigate } from 'react-router-dom'
 import { fetchPizzas } from '../redux/slices/pizzasSlice'
+import { PizzaElem } from '../types'
 
+export const Items: FC = () => {
+    const sortName: string[] = ['rating&order=desc', 'rating&order=asc', 'price&order=desc', 'price&order=asc', 'title&order=desc', 'title&order=asc'] //сортировка
 
-export default function Items() {
-    const sortName = ['rating&order=desc', 'rating&order=asc', 'price&order=desc', 'price&order=asc', 'title&order=desc', 'title&order=asc'] //сортировка
-
-    const filterInd = useSelector((state) => state.filter.filterIndex) //достаём из redux id фильтрации
-    const sortInd = useSelector((state) => state.filter.sortIndex) //достаём из redux id сортировки
-    const searchValue = useSelector((state) => state.search.value) //поиск по пиццам
-    const activePage = useSelector(state => state.activePage.page ) //активная страница
+    const filterInd: number = useSelector((state) => state.filter.filterIndex) //достаём из redux id фильтрации
+    const sortInd: number = useSelector((state) => state.filter.sortIndex) //достаём из redux id сортировки
+    const searchValue: string = useSelector((state) => state.search.value) //поиск по пиццам
+    const activePage: number = useSelector(state => state.activePage.page ) //активная страница
     const { items, status } = useSelector(state => state.pizzas)
-
+    console.log(items, status)
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -76,8 +76,8 @@ export default function Items() {
             <div className={styles.items}>
                 {status === 'error' && <div>Упс...Что-то пошло не так</div>}
                 {status !== 'loading' ? (items
-                .filter(item => (item.title.toLowerCase().includes(searchValue.toLowerCase())))
-                .map(elem => (
+                .filter((item: PizzaElem) => (item.title.toLowerCase().includes(searchValue.toLowerCase())))
+                .map((elem: PizzaElem) => (
                     <Item key={elem.id} elem={elem}/>
                 ))) : (new Array(4)).fill().map((_, index) => <MyLoader key={index} />)}
             </div>

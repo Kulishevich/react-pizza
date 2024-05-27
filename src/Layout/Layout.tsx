@@ -1,9 +1,9 @@
-import React from 'react'
-import Header from '../Header/Header'
+import React, { FC } from 'react'
+import {Header} from '../Header/Header'
 import { Outlet } from 'react-router-dom'
 import styles from './Layout.module.scss'
 
-export const Layout = () => {
+export const Layout: FC = () => {
   return (
     <div className={styles.main}>
       <div className={styles.container}>

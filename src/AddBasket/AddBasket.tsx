@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styles from './AddBasket.module.scss'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-export default function AddBasket() {
-  const pizzaElem = useSelector(state => state.basket.basketPizzas)
+type pizzaElem = {
+  id: number,
+  imageUrl: string,
+  title: string,
+  types: number[],
+  sizes: number[],
+  price: number,
+  category: number,
+  rating: number,
+  activeSize: number,
+  activeType: string,
+  count: number
+}
 
+export const AddBasket: FC = () => {
+  const pizzaElem: pizzaElem[] = useSelector(state => state.basket.basketPizzas)
+
+  console.log(pizzaElem)
   return (
         <Link to='/basket' className={styles.main}>
           <div className={styles.price}>

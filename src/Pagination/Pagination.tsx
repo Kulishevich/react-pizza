@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import styles from './Pagination.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { setActivePage, activePageIncrement, activePageDecrement } from '../redux/slices/pageSlice'
 
 
-export default function Pagination() {
-  const pages = [1, 2, 3]
+export const Pagination: FC = () => {
+  const pages: number[] = [1, 2, 3]
 
   const activePage = useSelector(state => state.activePage.page )
   const dispatch = useDispatch()

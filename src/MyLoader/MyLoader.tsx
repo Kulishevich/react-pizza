@@ -1,8 +1,8 @@
-import React from "react"
+import React, { FC } from "react"
 import ContentLoader from "react-content-loader"
 import styles from './MyLoader.module.scss'
 
-const MyLoader = (props) => (
+export const MyLoader: FC = () => (
   <div className={styles.main}>
     <ContentLoader 
       speed={2}
@@ -11,7 +11,6 @@ const MyLoader = (props) => (
       viewBox="0 0 280 460"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
-      {...props}
     >
       <circle cx="130" cy="131" r="130" /> 
       <rect x="-2" y="315" rx="10" ry="10" width="280" height="85" /> 
@@ -21,5 +20,3 @@ const MyLoader = (props) => (
     </ContentLoader>
   </div>
 )
-
-export default MyLoader

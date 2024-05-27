@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styles from './BasketEmpty.module.scss'
 import { Link } from 'react-router-dom'
 
-export default function BasketEmpty() {
+
+export const BasketEmpty: FC = () => {
   return (
     <div className={styles.main}>
         <h1 className={styles.title}>Корзина пустая</h1>

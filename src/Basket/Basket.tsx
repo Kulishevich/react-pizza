@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import styles from './Basket.module.scss'
-import BasketEmpty from './BasketEmpty/BasketEmpty'
+import {BasketEmpty} from './BasketEmpty/BasketEmpty'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setBasketPizzas, setCountIncrement, setCountDecrement, deletePizzaElem, clearPizzaBasket } from '../redux/slices/basketSlice'
+import { PizzaElem } from '../types'
 
-export default function Basket() {
-    const pizzaElem = useSelector((state) => state.basket.basketPizzas)
+
+export const Basket: FC = () => {
+    const pizzaElem : PizzaElem[]= useSelector((state) => state.basket.basketPizzas)
     
     const dispatch = useDispatch()
 

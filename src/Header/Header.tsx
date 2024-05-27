@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styles from './Header.module.scss'
-import AddBasket from '../AddBasket/AddBasket'
-import SearchPizza from '../SearchPizza/SearchPizza'
+import {AddBasket} from '../AddBasket/AddBasket'
+import {SearchPizza} from '../SearchPizza/SearchPizza'
 import { Link } from 'react-router-dom'
 
-export default function Header({setSearchPizza}) {
+export const Header: FC = () => {
 
   return (
     <div className={styles.main}>
@@ -16,7 +16,7 @@ export default function Header({setSearchPizza}) {
                 <h1>REACT PIZZA</h1>
                 <p>самая вкусная пицца во вселенной</p>
             </div>
-            {/* <SearchPizza setSearchPizza={setSearchPizza}/> */}
+            <SearchPizza />
         </Link>
         <AddBasket/>
     </div>
