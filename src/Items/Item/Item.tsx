@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 import styles from './Item.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { setBasketPizzas } from '../../redux/slices/basketSlice'
-import { PizzaElem } from '../../types'
+import { PizzaElem } from '../../types/types'
 
 interface PizzaElemProps {
     elem: PizzaElem

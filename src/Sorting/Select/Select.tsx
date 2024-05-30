@@ -3,20 +3,24 @@ import styles from './Select.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSortIndex } from '../../redux/slices/filterSlice'
 
+type MouseClick = MouseEvent & {
+  composedPath(): EventTarget[]
+}
+
 const sort: string[] = ['популярности (DESC)', 'популярности (ASC)', 'цене (DESC)', 'цене (ASC)', 'алфавиту (DESC)', 'алфавиту (ASC)']
 
 export const Select: FC = () => {
     const [showMenu, setShowMenu] = useState<boolean>(false)
-    const selectRef = useRef()
+    const selectRef = useRef<HTMLDivElement>(null)
     const sortInd = useSelector((state) => state.filter.sortIndex)
     const dispatch = useDispatch()
 
   useEffect(() => {
     if(showMenu){  
-        const handleClickOutside = (event) => { 
-          if(!event.composedPath().includes(selectRef.current)){
+        const handleClickOutside = (event : MouseEvent) => { 
+          const _event = event as MouseClick;
+          if(selectRef.current && !_event.composedPath().includes(selectRef.current)){
             setShowMenu(false)
-            console.log('закрываем')
             document.body.removeEventListener('click', handleClickOutside)
           }
         }

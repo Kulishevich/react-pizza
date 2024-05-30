@@ -13,7 +13,8 @@
     "resolveJsonModule": true,                      // Позволяет импортировать файлы JSON
     "isolatedModules": true,                        // Обрабатывает каждый файл как отдельный модуль
     "noEmit": true,                                 // Отключает вывод файлов после компиляции
-    "jsx": "react-jsx"                              // Указывает трансформацию JSX для React
+    "jsx": "react-jsx" ,                            // Указывает трансформацию JSX для React
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "include": ["src"],                               // Включает все файлы в папке src
   "exclude": ["node_modules"]                       // Исключает папку node_modules

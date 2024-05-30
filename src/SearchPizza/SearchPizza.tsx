@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react'
+import React, { useState, useCallback, useRef, ChangeEvent } from 'react'
 import styles from './SearchPizza.module.scss'
 import { useDispatch } from 'react-redux'
 import { setSearch } from '../redux/slices/searchSlice'
@@ -13,17 +13,16 @@ export const SearchPizza = () => {
     const clickClear = () => {
         setInputValue('')
         dispatch(setSearch(''))
-        inputRef.current.focus()
+        inputRef.current?.focus()
     }
 
-    const debounceChangeValue = useCallback(debounce((event) => {
+    const debounceChangeValue = useCallback(debounce((event : ChangeEvent<HTMLInputElement>) => {
         dispatch(setSearch(event.target.value))
         console.log('change debounce!!!')
     }, 500), [])
 
-    const changeValue = (event) => {
+    const changeValue = (event: ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value)
-        console.log('change!!!')
         debounceChangeValue(event)
     }
 

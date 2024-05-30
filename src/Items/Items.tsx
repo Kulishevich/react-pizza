@@ -8,7 +8,7 @@ import { setSortIndex, setFilterIndex } from '../redux/slices/filterSlice'
 import qs from 'qs'
 import { useNavigate } from 'react-router-dom'
 import { fetchPizzas } from '../redux/slices/pizzasSlice'
-import { PizzaElem } from '../types'
+import { PizzaElem } from '../types/types'
 
 export const Items: FC = () => {
     const sortName: string[] = ['rating&order=desc', 'rating&order=asc', 'price&order=desc', 'price&order=asc', 'title&order=desc', 'title&order=asc'] //сортировка
@@ -79,7 +79,7 @@ export const Items: FC = () => {
                 .filter((item: PizzaElem) => (item.title.toLowerCase().includes(searchValue.toLowerCase())))
                 .map((elem: PizzaElem) => (
                     <Item key={elem.id} elem={elem}/>
-                ))) : (new Array(4)).fill().map((_, index) => <MyLoader key={index} />)}
+                ))) : (new Array(4)).fill(null).map((_, index) => <MyLoader key={index} />)}
             </div>
         </div>
     </div>
