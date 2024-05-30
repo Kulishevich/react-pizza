@@ -1,17 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { PizzaElemBasket } from '../../types/types';
 
+interface BasketSliceState {
+    basketPizzas: PizzaElemBasket[]
+}
+
+const initialState: BasketSliceState = {
+    basketPizzas: []
+}
 
 export const basketSlice = createSlice({
     name: 'basket',
-    initialState: {
-        basketPizzas: []
-    },
+    initialState,
     reducers: {
         setBasketPizzas: (state, action) => {
             const findItem = state.basketPizzas.find(obj => obj.id === action.payload.id);
 
             if(findItem){
-                    findItem.count++
+                findItem.count++
             } else {
                 state.basketPizzas.push({
                     ...action.payload,

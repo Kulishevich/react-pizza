@@ -2,12 +2,13 @@ import React, { FC, useState } from 'react'
 import styles from './Pagination.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { setActivePage, activePageIncrement, activePageDecrement } from '../redux/slices/pageSlice'
+import { RootState } from '../redux/store'
 
 
 export const Pagination: FC = () => {
   const pages: number[] = [1, 2, 3]
 
-  const activePage = useSelector(state => state.activePage.page )
+  const activePage = useSelector((state: RootState) => state.activePage.page )
   const dispatch = useDispatch()
 
   const increment = () => {

@@ -4,11 +4,12 @@ import {BasketEmpty} from './BasketEmpty/BasketEmpty'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCountIncrement, setCountDecrement, deletePizzaElem, clearPizzaBasket } from '../redux/slices/basketSlice'
-import { PizzaElem } from '../types/types'
+import { PizzaElemBasket } from '../types/types'
+import { RootState } from '../redux/store'
 
 
 export const Basket: FC = () => {
-    const pizzaElem : PizzaElem[] = useSelector((state) => state.basket.basketPizzas)
+    const pizzaElem : PizzaElemBasket[] = useSelector((state: RootState) => state.basket.basketPizzas)
     
     const dispatch = useDispatch()
 
@@ -50,8 +51,8 @@ export const Basket: FC = () => {
             ))}
         </div>
         <div className={styles.allPrice}>
-            <div className={styles.allPizza}>Всего пицц : {pizzaElem.reduce((sum, elem) =>  sum += (elem.count ?? 0), 0)}</div> 
-            <div className={styles.finalPrice}>Сумма заказа : {pizzaElem.reduce((sum, item) => sum += (item.count ?? 0) * item.price, 0)} P</div>
+            <div className={styles.allPizza}>Всего пицц : {pizzaElem.reduce((sum, elem) =>  sum += elem.count, 0)}</div> 
+            <div className={styles.finalPrice}>Сумма заказа : {pizzaElem.reduce((sum, item) => sum += item.count * item.price, 0)} P</div>
         </div>
         <div className={styles.footer}>
             <Link className={styles.btn1} to='/'>Вернуться назад</Link>

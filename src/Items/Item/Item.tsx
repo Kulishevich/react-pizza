@@ -3,6 +3,7 @@ import styles from './Item.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { setBasketPizzas } from '../../redux/slices/basketSlice'
 import { PizzaElem } from '../../types/types'
+import { RootState } from '../../redux/store'
 
 interface PizzaElemProps {
     elem: PizzaElem
@@ -12,10 +13,10 @@ export const Item: FC<PizzaElemProps> = ({elem}) => {
     // console.log(elem)
     const typeNames: string[] = ['тонкое', 'традиционное']
     const sizeNames: number[] = [26, 30, 40]
-    const [activeType, setActiveType] = useState<number>()
-    const [activeSize, setActiveSize] = useState<number>()
+    const [activeType, setActiveType] = useState<number>(0)
+    const [activeSize, setActiveSize] = useState<number>(0)
 
-    const pizzaElem = useSelector((state) => state.basket.basketPizzas)
+    const pizzaElem = useSelector((state: RootState) => state.basket.basketPizzas)
     const dispatch = useDispatch()
 
     const changeActiveType = (index: number) => {
@@ -78,7 +79,7 @@ export const Item: FC<PizzaElemProps> = ({elem}) => {
                     ))}>
                 <div>+</div>
                 <div>Добавить</div>
-                <div className={styles.count}>{pizzaElem.filter((obj: PizzaElem) => obj.id === elem.id).length ? pizzaElem.find((obj: PizzaElem) => obj.id === elem.id).count : 0}</div>
+                <div className={styles.count}>{pizzaElem.filter((obj) => obj.id === elem.id).length ? pizzaElem.find((obj) => obj.id === elem.id)?.count : 0}</div>
             </div>
         </div>
     </div>

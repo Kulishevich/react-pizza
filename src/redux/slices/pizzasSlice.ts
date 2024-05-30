@@ -1,7 +1,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { PizzaElem } from '../../types/types';
 // ВНИМАНИЕ!!! если запрос на сервер не работает => я удалил mockAPI, и тогда надо запускать сервер через json-server
 //но под json-server тут запрос не переделан. Воот...
+
+interface PizzaSliceState{
+    items: PizzaElem[],
+    status: string,
+}
+
+const initialState: PizzaSliceState = {
+    items: [],
+    status: '',
+}
+
 export const fetchPizzas = createAsyncThunk(
     'pizza/fetchPizzasStatus',
     async (params) => {
@@ -18,10 +30,7 @@ export const fetchPizzas = createAsyncThunk(
 
 const pizzasSlice = createSlice({
     name: 'pizza',
-    initialState: {
-        items: [],
-        status: '',
-    },
+    initialState,
     reducers: {
         setItems: (state, action) => {
             state.items = action.payload

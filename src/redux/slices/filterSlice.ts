@@ -4,7 +4,7 @@ export const filterSlice = createSlice({
     name: 'filter',
     initialState: {
         filterIndex: 0,
-        sortIndex : 0,
+        sortIndex: 0,
     },
     reducers: {
         setFilterIndex: (state, action) => {

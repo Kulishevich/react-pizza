@@ -2,6 +2,7 @@ import React, { FC, useEffect, useRef, useState } from 'react'
 import styles from './Select.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSortIndex } from '../../redux/slices/filterSlice'
+import { RootState } from '../../redux/store'
 
 type MouseClick = MouseEvent & {
   composedPath(): EventTarget[]
@@ -12,7 +13,7 @@ const sort: string[] = ['популярности (DESC)', 'популярнос
 export const Select: FC = () => {
     const [showMenu, setShowMenu] = useState<boolean>(false)
     const selectRef = useRef<HTMLDivElement>(null)
-    const sortInd = useSelector((state) => state.filter.sortIndex)
+    const sortInd = useSelector((state: RootState) => state.filter.sortIndex)
     const dispatch = useDispatch()
 
   useEffect(() => {

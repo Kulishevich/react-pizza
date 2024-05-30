@@ -9,15 +9,16 @@ import qs from 'qs'
 import { useNavigate } from 'react-router-dom'
 import { fetchPizzas } from '../redux/slices/pizzasSlice'
 import { PizzaElem } from '../types/types'
+import { RootState } from '../redux/store'
 
 export const Items: FC = () => {
     const sortName: string[] = ['rating&order=desc', 'rating&order=asc', 'price&order=desc', 'price&order=asc', 'title&order=desc', 'title&order=asc'] //сортировка
 
-    const filterInd: number = useSelector((state) => state.filter.filterIndex) //достаём из redux id фильтрации
-    const sortInd: number = useSelector((state) => state.filter.sortIndex) //достаём из redux id сортировки
-    const searchValue: string = useSelector((state) => state.search.value) //поиск по пиццам
-    const activePage: number = useSelector(state => state.activePage.page ) //активная страница
-    const { items, status } = useSelector(state => state.pizzas)
+    const filterInd: number = useSelector((state : RootState) => state.filter.filterIndex) //достаём из redux id фильтрации
+    const sortInd: number = useSelector((state : RootState) => state.filter.sortIndex) //достаём из redux id сортировки
+    const searchValue: string = useSelector((state : RootState) => state.search.value) //поиск по пиццам
+    const activePage: number = useSelector((state : RootState) => state.activePage.page ) //активная страница
+    const { items, status } = useSelector((state : RootState) => state.pizzas)
     console.log(items, status)
     const navigate = useNavigate()
     const dispatch = useDispatch()

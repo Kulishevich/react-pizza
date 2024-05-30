@@ -8,7 +8,7 @@ import {
 import {Basket} from './Basket/Basket';
 import { Layout } from './Layout/Layout';
 import { PageNotFound } from './PageNotFound/PageNotFound';
-import store from './redux/store'
+import {store} from './redux/store'
 import { Provider } from 'react-redux'
 
 
