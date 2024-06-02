@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import styles from './Pagination.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { setActivePage, activePageIncrement, activePageDecrement } from '../redux/slices/pageSlice'

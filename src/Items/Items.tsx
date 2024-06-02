@@ -1,15 +1,15 @@
-import React, { FC, useEffect, useState } from 'react'
+import { FC, useEffect } from 'react'
 import styles from './Items.module.scss'
 import {Item} from './Item/Item'
 import {MyLoader} from '../MyLoader/MyLoader'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { setActivePage } from '../redux/slices/pageSlice'
 import { setSortIndex, setFilterIndex } from '../redux/slices/filterSlice'
 import qs from 'qs'
 import { useNavigate } from 'react-router-dom'
 import { fetchPizzas } from '../redux/slices/pizzasSlice'
 import { PizzaElem } from '../types/types'
-import { RootState } from '../redux/store'
+import { RootState, useAppDispatch } from '../redux/store'
 
 export const Items: FC = () => {
     const sortName: string[] = ['rating&order=desc', 'rating&order=asc', 'price&order=desc', 'price&order=asc', 'title&order=desc', 'title&order=asc'] //сортировка
@@ -21,7 +21,7 @@ export const Items: FC = () => {
     const { items, status } = useSelector((state : RootState) => state.pizzas)
     console.log(items, status)
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     // const fetchData = () => { // функция получения данных с сервера(mockAPI)
         //вариант без async await
@@ -43,9 +43,9 @@ export const Items: FC = () => {
         if(window.location.search){
             const params = qs.parse(window.location.search.substring(1))
             
-            dispatch(setSortIndex(params.sortInd))
-            dispatch(setFilterIndex(params.filterInd))
-            dispatch(setActivePage(params.activePage))
+            dispatch(setSortIndex(Number(params.sortInd)))
+            dispatch(setFilterIndex(Number(params.filterInd)))
+            dispatch(setActivePage(Number(params.activePage)))
         }
     }, [])
 

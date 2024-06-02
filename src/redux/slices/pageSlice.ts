@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 export const pageSlice = createSlice({
     name: 'activePage',
@@ -12,7 +12,7 @@ export const pageSlice = createSlice({
         activePageDecrement: (state) => {
             state.page--
         },
-        setActivePage: (state, action) => {
+        setActivePage: (state, action: PayloadAction<number>) => {
             state.page = Number(action.payload)
         }
     }

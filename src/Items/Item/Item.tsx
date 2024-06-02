@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import styles from './Item.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { setBasketPizzas } from '../../redux/slices/basketSlice'
@@ -10,10 +10,9 @@ interface PizzaElemProps {
 }
 
 export const Item: FC<PizzaElemProps> = ({elem}) => {
-    // console.log(elem)
     const typeNames: string[] = ['тонкое', 'традиционное']
     const sizeNames: number[] = [26, 30, 40]
-    const [activeType, setActiveType] = useState<number>(0)
+    const [activeTypeInd, setActiveTypeInd] = useState<number>(0)
     const [activeSize, setActiveSize] = useState<number>(0)
 
     const pizzaElem = useSelector((state: RootState) => state.basket.basketPizzas)
@@ -21,7 +20,7 @@ export const Item: FC<PizzaElemProps> = ({elem}) => {
 
     const changeActiveType = (index: number) => {
             if(elem.types.includes(index)){
-                setActiveType(index)
+                setActiveTypeInd(index)
             }
     }
 
@@ -46,7 +45,7 @@ export const Item: FC<PizzaElemProps> = ({elem}) => {
                     {typeNames.map((item, index) => (
                        <div
                         key={index} 
-                        className={`${styles.btn} ${!elem.types.includes(index) && styles.disabled} ${index === activeType  && styles.active}`}
+                        className={`${styles.btn} ${!elem.types.includes(index) && styles.disabled} ${index === activeTypeInd  && styles.active}`}
                         onClick={() => changeActiveType(index)}>
                             {item}
                         </div> 
@@ -73,8 +72,9 @@ export const Item: FC<PizzaElemProps> = ({elem}) => {
                 onClick={() => dispatch(setBasketPizzas(
                     {
                         ...elem,
-                        activeType: typeNames[activeType],
+                        activeType: typeNames[activeTypeInd],
                         activeSize: sizeNames[activeSize],
+                        count: 1
                     }
                     ))}>
                 <div>+</div>

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export const filterSlice = createSlice({
     name: 'filter',
@@ -7,10 +7,10 @@ export const filterSlice = createSlice({
         sortIndex: 0,
     },
     reducers: {
-        setFilterIndex: (state, action) => {
+        setFilterIndex: (state, action: PayloadAction<number>) => {
             state.filterIndex = Number(action.payload)
         },
-        setSortIndex: (state, action) => {
+        setSortIndex: (state, action: PayloadAction<number>) => {
             state.sortIndex = Number(action.payload)
         },
     }

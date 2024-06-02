@@ -19,6 +19,6 @@ export type PizzaElemBasket = {
     category: number,
     rating: number,
     count: number,
-    activeType: number,
+    activeType: string,
     activeSize: number,
 }
