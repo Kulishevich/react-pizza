@@ -7,7 +7,7 @@ import { setActivePage } from '../redux/slices/pageSlice'
 import { setSortIndex, setFilterIndex } from '../redux/slices/filterSlice'
 import qs from 'qs'
 import { useNavigate } from 'react-router-dom'
-import { fetchPizzas } from '../redux/slices/pizzasSlice'
+import { fetchPizzas, setItems } from '../redux/slices/pizzasSlice'
 import { PizzaElem } from '../types/types'
 import { RootState, useAppDispatch } from '../redux/store'
 
@@ -19,7 +19,7 @@ export const Items: FC = () => {
     const searchValue: string = useSelector((state : RootState) => state.search.value) //поиск по пиццам
     const activePage: number = useSelector((state : RootState) => state.activePage.page ) //активная страница
     const { items, status } = useSelector((state : RootState) => state.pizzas)
-    console.log(items, status)
+    // console.log(items, status)
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 

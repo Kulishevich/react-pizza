@@ -1,18 +1,22 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { PizzaElemBasket } from '../../types/types';
+import { getBasketLS } from '../../utils/GetBasketLS';
 
 interface BasketSliceState {
     basketPizzas: PizzaElemBasket[]
 }
 
 const initialState: BasketSliceState = {
-    basketPizzas: []
+    basketPizzas: getBasketLS()
 }
 
 export const basketSlice = createSlice({
     name: 'basket',
     initialState,
     reducers: {
+        setLSBasketPizzas: (state, action: PayloadAction<PizzaElemBasket[]>) => {
+            state.basketPizzas = action.payload
+        },
         setBasketPizzas: (state, action: PayloadAction<PizzaElemBasket>) => {
             const findItem = state.basketPizzas.find(obj => obj.id === action.payload.id);
 
@@ -43,5 +47,5 @@ export const basketSlice = createSlice({
     }
 })
 
-export const { setBasketPizzas, setCountIncrement, setCountDecrement, deletePizzaElem, clearPizzaBasket} = basketSlice.actions //экспорт методов(функций)
+export const { setBasketPizzas, setCountIncrement, setCountDecrement, deletePizzaElem, clearPizzaBasket, setLSBasketPizzas} = basketSlice.actions //экспорт методов(функций)
 export default basketSlice.reducer

@@ -12,6 +12,8 @@ export const Filter: FC = () => {
   const activeFilter: number = useSelector((state: RootState) => state.filter.filterIndex)
   const dispatch = useDispatch()
 
+  console.log('render categoryes')
+
   return (
     <div className={styles.main}>
         <div className={styles.nav}>

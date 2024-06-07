@@ -2,16 +2,16 @@ import  { FC } from 'react'
 import styles from './Basket.module.scss'
 import {BasketEmpty} from './BasketEmpty/BasketEmpty'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { setCountIncrement, setCountDecrement, deletePizzaElem, clearPizzaBasket } from '../redux/slices/basketSlice'
+import { useSelector } from 'react-redux'
+import { setCountIncrement, setCountDecrement, deletePizzaElem, clearPizzaBasket, setLSBasketPizzas } from '../redux/slices/basketSlice'
 import { PizzaElemBasket } from '../types/types'
-import { RootState } from '../redux/store'
+import { RootState, useAppDispatch } from '../redux/store'
 
 
 export const Basket: FC = () => {
     const pizzaElem : PizzaElemBasket[] = useSelector((state: RootState) => state.basket.basketPizzas)
     
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
   return (
     pizzaElem.length ? 

@@ -25,7 +25,7 @@ export const Item: FC<PizzaElemProps> = ({elem}) => {
     }
 
     const changeActiveSize = (item: number, index: number) => {
-        console.log(item, index)
+        // console.log(item, index)
             if(elem.sizes.includes(item)){
                 setActiveSize(index)
             }
