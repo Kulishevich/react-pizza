@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setActivePage, activePageIncrement, activePageDecrement } from '../redux/slices/pageSlice'
 import { RootState } from '../redux/store'
 
-
+// пагинацию было настроение сделать без библеотеки, своими руками
 export const Pagination: FC = () => {
   const pages: number[] = [1, 2, 3]
 
