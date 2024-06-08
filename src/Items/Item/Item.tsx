@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setBasketPizzas } from '../../redux/slices/basketSlice'
 import { PizzaElem } from '../../types/types'
 import { RootState } from '../../redux/store'
+import { Link } from 'react-router-dom'
 
 interface PizzaElemProps {
     elem: PizzaElem
@@ -33,9 +34,9 @@ export const Item: FC<PizzaElemProps> = ({elem}) => {
 
   return (
     <div className={styles.main}>
-        <div className={styles.image}>
+        <Link to={`/pizza/${elem.id}`} className={styles.image}>
             <img src={elem.imageUrl} alt="" />
-        </div>
+        </Link>
         <div className={styles.container}>
             <div className={styles.title}>
                 <h3>{elem.title}</h3>

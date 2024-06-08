@@ -8,7 +8,7 @@ import { PizzaElemBasket } from '../types/types'
 import { RootState, useAppDispatch } from '../redux/store'
 
 
-export const Basket: FC = () => {
+const Basket: FC = () => {
     const pizzaElem : PizzaElemBasket[] = useSelector((state: RootState) => state.basket.basketPizzas)
     
     const dispatch = useAppDispatch()
@@ -61,3 +61,5 @@ export const Basket: FC = () => {
     </div> : <BasketEmpty/>
   )
 }
+
+export default Basket

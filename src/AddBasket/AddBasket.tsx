@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { PizzaElemBasket } from '../types/types'
 import { RootState, useAppDispatch } from '../redux/store'
-import { setLSBasketPizzas } from '../redux/slices/basketSlice'
 
 export const AddBasket: FC = () => {
   let isMount = useRef<boolean>(false)

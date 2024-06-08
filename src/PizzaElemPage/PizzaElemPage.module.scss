@@ -1,0 +1,37 @@
+.main {
+    width: fit-content;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    border-radius: 10px;
+}
+.image {
+
+}
+.title {
+    margin: 20px 0;
+}
+.price {
+
+}
+.button {
+    width: 211px;
+    height: 55px;
+    border-radius: 30px;
+    margin: 5px;
+    border: 1px solid #D3D3D3;
+    background-color: black;
+    color: #D3D3D3;
+    font-weight: bold;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.49px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

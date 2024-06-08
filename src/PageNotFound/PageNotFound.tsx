@@ -1,7 +1,9 @@
 import { FC } from 'react'
 
-export const PageNotFound: FC = () => {
+const PageNotFound: FC = () => {
   return (
     <div>PageNotFound</div>
   )
 }
+
+export default PageNotFound

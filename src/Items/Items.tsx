@@ -78,7 +78,7 @@ export const Items: FC = () => {
                 {status === 'error' && <div>Упс...Что-то пошло не так</div>}
                 {status !== 'loading' ? (items
                 .filter((item: PizzaElem) => (item.title.toLowerCase().includes(searchValue.toLowerCase())))
-                .map((elem: PizzaElem) => (
+                .map((elem: PizzaElem, index) => (
                     <Item key={elem.id} elem={elem}/>
                 ))) : (new Array(4)).fill(null).map((_, index) => <MyLoader key={index} />)}
             </div>

@@ -1,3 +1,4 @@
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import {Home} from './Home';
 import './global.scss'
@@ -5,12 +6,13 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import {Basket} from './Basket/Basket';
 import { Layout } from './Layout/Layout';
-import { PageNotFound } from './PageNotFound/PageNotFound';
 import {store} from './redux/store'
 import { Provider } from 'react-redux'
 
+const PizzaElemPage = lazy(() => import('./PizzaElemPage/PizzaElemPage'))
+const Basket = lazy(() => import('./Basket/Basket'))
+const PageNotFound = lazy(() => import('./PageNotFound/PageNotFound'))
 
 const router = createBrowserRouter([
   {
@@ -23,11 +25,24 @@ const router = createBrowserRouter([
       },
       {
         path: "/basket",
-        element: <Basket/>
+        element: 
+        <Suspense fallback={<div>Loading...</div>}>
+          <Basket/>
+        </Suspense>
+      },
+      {
+        path: "/pizza/:id",
+        element:         
+        <Suspense fallback={<div>Loading...</div>}>
+          <PizzaElemPage/>
+        </Suspense>,
       },
       {
         path: "/*",
-        element: <PageNotFound/>
+        element:
+        <Suspense fallback={<div>Loading...</div>}>
+          <PageNotFound/>
+        </Suspense>
       }
     ]
   }
