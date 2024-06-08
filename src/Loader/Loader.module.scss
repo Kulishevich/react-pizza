@@ -1,0 +1,17 @@
+.loader {
+    width: 150px;
+    height: 150px;
+    margin: 50px auto;
+    border: 10px solid #FCFCFC;
+    border-top: 10px solid #FE5F1E;
+    border-radius: 50%;
+    animation: animate 2s infinite linear;
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}}

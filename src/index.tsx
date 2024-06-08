@@ -9,6 +9,7 @@ import {
 import { Layout } from './Layout/Layout';
 import {store} from './redux/store'
 import { Provider } from 'react-redux'
+import Loader from './Loader/Loader';
 
 const PizzaElemPage = lazy(() => import('./PizzaElemPage/PizzaElemPage'))
 const Basket = lazy(() => import('./Basket/Basket'))
@@ -26,21 +27,21 @@ const router = createBrowserRouter([
       {
         path: "/basket",
         element: 
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader/>}>
           <Basket/>
         </Suspense>
       },
       {
         path: "/pizza/:id",
         element:         
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader/>}>
           <PizzaElemPage/>
         </Suspense>,
       },
       {
         path: "/*",
         element:
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader/>}>
           <PageNotFound/>
         </Suspense>
       }
